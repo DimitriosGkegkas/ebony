@@ -19,6 +19,12 @@ export interface MessengerOperations {
     handover: (id: string) => Promise<void>;
 }
 
+interface MessengerWebhooks {
+    messaging?: (param: any) => void;
+    standby?: (param: any) => void;
+    changes?: (param: any) => void;
+}
+
 export default class MessengerAdapter extends GenericAdapter<MessengerOperations> {
     private webhookKey: string;
     private pageToken: string;
@@ -33,12 +39,13 @@ export default class MessengerAdapter extends GenericAdapter<MessengerOperations
         type: 'ORDERED' | 'UNORDERED'
     ) => Promise<void>;
     public webhook: Express;
-
+    webhooksHandlers: MessengerWebhooks;
     constructor(
         options: MessengerWebhookOptions,
         userLoader?: (id: string) => Promise<any>,
         sendFunction?: SenderFunction,
-        domain?: string
+        domain?: string,
+        webhooks?: MessengerWebhooks
     ) {
         const { route = '/fb', webhookKey = 'ebony123', pageId, pageToken } = options;
 
@@ -47,6 +54,7 @@ export default class MessengerAdapter extends GenericAdapter<MessengerOperations
         this.pageToken = pageToken;
         this.pageId = pageId;
         this.route = route;
+        this.webhooksHandlers = webhooks ? webhooks : ({} as MessengerWebhooks);
         const { send, getUserData, handover } = senderFactory(pageToken, sendFunction, domain);
 
         this.sender = send;
@@ -70,10 +78,12 @@ export default class MessengerAdapter extends GenericAdapter<MessengerOperations
             routers: this.routers,
             handlers: this.handlers
         });
-
         // Facebook specific endpoints
         this.webhook.get(this.route, this.validationEndpoint());
-        this.webhook.post(this.route, webhook(this.pageId, { messaging }));
+        this.webhook.post(
+            this.route,
+            webhook(this.pageId, { messaging, ...this.webhooksHandlers })
+        );
     }
 
     private validationEndpoint(): RequestHandler {
