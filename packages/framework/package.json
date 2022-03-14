@@ -1,6 +1,6 @@
 {
-    "name": "@ebenos/framework",
-    "version": "4.0.0-alpha.29",
+    "name": "@ebenos2/framework",
+    "version": "4.0.1",
     "description": "A module-based NodeJS chatbot framework.",
     "main": "./build/index.js",
     "types": "./build/index.d.ts",
