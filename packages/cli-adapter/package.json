@@ -1,7 +1,7 @@
 {
-    "name": "@ebenos/cli-adapter",
+    "name": "@ebenos2/cli-adapter",
     "version": "4.0.0-alpha.29",
-    "description": "A CLI adapter for ebenos framework",
+    "description": "A CLI adapter for ebenos2 framework",
     "main": "./build/index.js",
     "publishConfig": {
         "access": "public"
@@ -34,8 +34,8 @@
         "rxjs": "^7.4.0"
     },
     "devDependencies": {
-        "@ebenos/elements": "^4.0.0-alpha.29",
-        "@ebenos/framework": "^4.0.0-alpha.29"
+        "@ebenos2/elements": "^4.0.0-alpha.29",
+        "@ebenos2/framework": "^4.0.0-alpha.29"
     },
     "engines": {
         "node": ">=14.0.0"

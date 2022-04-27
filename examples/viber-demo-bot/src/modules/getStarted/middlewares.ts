@@ -1,4 +1,4 @@
-import { ActionMiddleware, InMemoryUser } from '@ebenos/framework';
+import { ActionMiddleware, InMemoryUser } from '@ebenos2/framework';
 
 export const preMiddlewares: Array<ActionMiddleware<InMemoryUser>> = [
     (actionName: string, user: InMemoryUser, params: any[], next: () => void): void => {

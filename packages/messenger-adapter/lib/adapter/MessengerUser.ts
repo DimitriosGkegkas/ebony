@@ -1,4 +1,4 @@
-import { DatabaseUser, User } from '@ebenos/framework';
+import { DatabaseUser, User } from '@ebenos2/framework';
 import { senderFactory } from './sender';
 import { UserDataFields } from './interfaces/messengerAPI';
 

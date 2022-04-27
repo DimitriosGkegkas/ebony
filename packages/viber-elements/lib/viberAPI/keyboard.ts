@@ -1,4 +1,4 @@
-import { ISerializable } from '@ebenos/framework';
+import { ISerializable } from '@ebenos2/framework';
 import { Button } from './attachments';
 import { IKeyboardOptions, InputFieldState, ISerializedKeyboard } from './interfaces';
 

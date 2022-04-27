@@ -1,5 +1,5 @@
-import { GenericAdapter, IInteraction, inMemoryUserLoader } from '@ebenos/framework';
-import { Message } from '@ebenos/elements';
+import { GenericAdapter, IInteraction, inMemoryUserLoader } from '@ebenos2/framework';
+import { Message } from '@ebenos2/elements';
 import rx from 'rxjs';
 
 import inquirer from 'inquirer';

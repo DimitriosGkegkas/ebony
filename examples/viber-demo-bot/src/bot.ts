@@ -1,5 +1,5 @@
-import { Bot, InMemoryUser } from '@ebenos/framework';
-import { ViberAdapter } from '@ebenos/viber-adapter';
+import { Bot, InMemoryUser } from '@ebenos2/framework';
+import { ViberAdapter } from '@ebenos2/viber-adapter';
 import { viberConfig } from './secret';
 
 import getStartedModule from './modules/getStarted';
@@ -7,7 +7,7 @@ import {
     IViberConversationStartedEvent,
     IViberSubscribedEvent,
     IViberUnsubscribedEvent
-} from '@ebenos/viber-adapter';
+} from '@ebenos2/viber-adapter';
 
 export const adapter = new ViberAdapter({
     authToken: viberConfig.auth_token,

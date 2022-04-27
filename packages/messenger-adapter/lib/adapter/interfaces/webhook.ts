@@ -1,4 +1,4 @@
-import { WitNLP } from '@ebenos/framework';
+import { WitNLP } from '@ebenos2/framework';
 
 export interface MessengerWebhookBody {
     object: string;

@@ -1,6 +1,6 @@
 import { Button, RichMedia } from './attachments';
 import { IFrame, IRichMediaOptions } from './interfaces';
-import { ISerializable } from '@ebenos/framework';
+import { ISerializable } from '@ebenos2/framework';
 
 export interface ICarouselElement {
     title?: string;
@@ -140,7 +140,7 @@ function createCarousel(
             (button) =>
                 new Button({
                     Rows: 1,
-                    Columns: 6,
+                    Columns: 6 / e.buttons.length,
                     Text: `<font color="${color('button', 'textColor')}"><b>${
                         button.text
                     }</b></font>`,

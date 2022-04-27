@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 
-import { Bot, InMemoryUser } from '@ebenos/framework';
-import { CliAdapter } from '@ebenos/cli-adapter';
+import { Bot, InMemoryUser } from '@ebenos2/framework';
+import { CliAdapter } from '@ebenos2/cli-adapter';
 
 import getStartedModule from './modules/getStarted';
 

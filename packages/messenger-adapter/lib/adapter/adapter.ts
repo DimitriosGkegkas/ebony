@@ -1,4 +1,4 @@
-import { GenericAdapter, IInteraction } from '@ebenos/framework';
+import { GenericAdapter, IInteraction } from '@ebenos2/framework';
 import express, { Request, Response, RequestHandler, Express } from 'express';
 
 import webhook from './webhook';

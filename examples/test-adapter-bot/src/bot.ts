@@ -1,4 +1,4 @@
-import { Bot, TestAdapter, InMemoryUser } from '@ebenos/framework';
+import { Bot, TestAdapter, InMemoryUser } from '@ebenos2/framework';
 
 import getStartedModule from './modules/getStarted';
 

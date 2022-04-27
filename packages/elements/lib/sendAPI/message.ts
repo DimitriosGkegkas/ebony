@@ -8,7 +8,7 @@
  *
  */
 
-import { ISerializable } from '@ebenos/framework';
+import { ISerializable } from '@ebenos2/framework';
 import { MessageOptions, SerializedMessage } from './interfaces';
 import { QuickReply } from './quickreplies';
 import { Attachment } from './attachments';

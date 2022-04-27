@@ -5,7 +5,7 @@ import {
     IRouters,
     ITrackingData,
     IUser
-} from '@ebenos/framework';
+} from '@ebenos2/framework';
 import express, { Request, Response } from 'express';
 import { json as bodyParser } from 'body-parser';
 import senderFactory from './sender';

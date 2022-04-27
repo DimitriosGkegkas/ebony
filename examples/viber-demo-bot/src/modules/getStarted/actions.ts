@@ -1,7 +1,13 @@
 import { bot } from '../../bot';
-import { RichMedia, Button, Message, Keyboard } from '@ebenos/viber-elements';
-import { Carousel } from '@ebenos/viber-elements';
-import { addAction, addPostbackRule, addTextRule, InMemoryUser, IPayload } from '@ebenos/framework';
+import { RichMedia, Button, Message, Keyboard } from '@ebenos2/viber-elements';
+import { Carousel } from '@ebenos2/viber-elements';
+import {
+    addAction,
+    addPostbackRule,
+    addTextRule,
+    InMemoryUser,
+    IPayload
+} from '@ebenos2/framework';
 import getStartedModule from '.';
 
 const testArray = [

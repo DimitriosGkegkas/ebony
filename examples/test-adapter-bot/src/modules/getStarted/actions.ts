@@ -1,12 +1,12 @@
 import { bot } from '../../bot';
-import { Message, TextQuickReply } from '@ebenos/elements';
+import { Message, TextQuickReply } from '@ebenos2/elements';
 import {
     addAction,
     addPostbackRule,
     addTextRule,
     createPayload,
     InMemoryUser
-} from '@ebenos/framework';
+} from '@ebenos2/framework';
 import getStartedModule from '.';
 
 addAction(getStartedModule, getStartedSecond);

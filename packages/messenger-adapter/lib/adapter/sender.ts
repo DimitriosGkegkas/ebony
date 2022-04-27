@@ -14,7 +14,7 @@ import {
     isMessageInteraction,
     isSenderActionInteraction,
     isNotifyInteraction
-} from '@ebenos/framework';
+} from '@ebenos2/framework';
 
 import { UserDataFields, MessagingOptions } from './interfaces/messengerAPI';
 import { sendAPI, getUserDataCall, passThreadControl, ISendAction } from '../messengerApi';

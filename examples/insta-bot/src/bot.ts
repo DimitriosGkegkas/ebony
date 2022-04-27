@@ -1,6 +1,6 @@
-import { Bot, InMemoryUser, inMemoryUserLoader } from '@ebenos/framework';
+import { Bot, InMemoryUser, inMemoryUserLoader } from '@ebenos2/framework';
 import { fbConfig } from './secret';
-import { MessengerAdapter } from '@ebenos/messenger-adapter';
+import { MessengerAdapter } from '@ebenos2/messenger-adapter';
 import { story_mention } from './modules/getStarted/actions';
 
 import getStarted from './modules/getStarted';

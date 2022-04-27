@@ -1,5 +1,5 @@
 {
-    "name": "@ebenos/insta-bot",
+    "name": "@ebenos2/insta-bot",
     "version": "4.0.0-alpha.29",
     "main": "./dist/server.js",
     "license": "MIT",
@@ -12,9 +12,9 @@
         "lint": "yarn eslint '*/**/*.ts' --quiet --fix -c ../../.eslintrc.js --ignore-path ../../.eslintignore"
     },
     "dependencies": {
-        "@ebenos/elements": "^4.0.0-alpha.29",
-        "@ebenos/framework": "^4.0.0-alpha.29",
-        "@ebenos/messenger-adapter": "^4.0.0-alpha.29",
+        "@ebenos2/elements": "^4.0.0-alpha.29",
+        "@ebenos2/framework": "^4.0.0-alpha.29",
+        "@ebenos2/messenger-adapter": "^4.0.0-alpha.29",
         "dotenv": "^10.0.0"
     }
 }

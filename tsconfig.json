@@ -55,6 +55,6 @@
     },
     "include": ["./packages/*/lib/**/*"],
     "paths": {
-        "@ebenos/*": ["./packages/*/lib"]
+        "@ebenos2/*": ["./packages/*/lib"]
     }
 }

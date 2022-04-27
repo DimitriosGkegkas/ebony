@@ -1,6 +1,6 @@
 import { bot } from '../../bot';
-import { Message } from '@ebenos/elements';
-import { addAction, addTextRule, InMemoryUser } from '@ebenos/framework';
+import { Message } from '@ebenos2/elements';
+import { addAction, addTextRule, InMemoryUser } from '@ebenos2/framework';
 import getStartedModule from '.';
 
 const DELAY = 10;

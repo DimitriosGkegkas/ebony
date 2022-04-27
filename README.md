@@ -1,6 +1,6 @@
 # Ebony Framework
 
-[![npm](https://img.shields.io/npm/v/@ebenos/framework)](https://www.npmjs.com/package/@ebenos/framework)
+[![npm](https://img.shields.io/npm/v/@ebenos2/framework)](https://www.npmjs.com/package/@ebenos2/framework)
 ![Node CI](https://github.com/chrispanag/ebony/workflows/Node%20CI/badge.svg)
 
 An easy to use, module-based, multi-channel chatbot framework.
@@ -18,7 +18,7 @@ For now, there is no detailed documentation for Ebony Framework. You can easily 
 ### Install Ebony Framework
 
 ```
-$ yarn add @ebenos/framework
+$ yarn add @ebenos2/framework
 ```
 
 ### Install an adapter
@@ -26,22 +26,22 @@ $ yarn add @ebenos/framework
 For Messenger:
 
 ```
-$ yarn add @ebenos/messenger-adapter
+$ yarn add @ebenos2/messenger-adapter
 ```
 
 For Viber:
 
 ```
-$ yarn add @ebenos/viber-adapter
+$ yarn add @ebenos2/viber-adapter
 ```
 
 ### Initialize the bot
 
 ```typescript
-import { Bot } from '@ebenos/framework';
+import { Bot } from '@ebenos2/framework';
 
 // Import the adapter (for example the Messenger Adapter) as well as the user model
-import { MessengerAdapter, MessengerUser } from '@ebenos/messenger-adapter';
+import { MessengerAdapter, MessengerUser } from '@ebenos2/messenger-adapter';
 
 // ... Here import the modules you'll use...
 import botModule from './modules/botModule';

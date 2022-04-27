@@ -1,4 +1,4 @@
-import { createModule, InMemoryUser, Module } from '@ebenos/framework';
+import { createModule, InMemoryUser, Module } from '@ebenos2/framework';
 
 import { preMiddlewares } from './middlewares';
 
