@@ -7,7 +7,8 @@ import {
     ISerializedGeneralMessage,
     ITextOptions,
     IURLOptions,
-    IRichMediaMessageOptions
+    IRichMediaMessageOptions,
+    IKeyboardMessageOptions
 } from './interfaces';
 import { Picture, RichMedia } from './attachments';
 import { Keyboard } from './keyboard';
@@ -22,6 +23,9 @@ function isUrl(options: IMessageOptions): options is IURLOptions {
 }
 function isRichMedia(options: IMessageOptions): options is IRichMediaMessageOptions {
     return (options as IRichMediaMessageOptions).rich_media !== undefined;
+}
+function isKeyboard(options: IMessageOptions): options is IKeyboardMessageOptions {
+    return (options as IMessageOptions).keyboard !== undefined;
 }
 
 /** Message Class */
@@ -59,6 +63,8 @@ export class Message implements ISerializable {
             const { text } = options;
             this.text = text;
             this.type = 'text';
+        } else if (isKeyboard(options)) {
+            this.type = 'keyboard';
         } else {
             const _exhaustiveCheck: never = options;
             console.log(_exhaustiveCheck);
@@ -119,6 +125,12 @@ export class Message implements ISerializable {
                     throw new Error('This should never happen');
                 }
                 return { ...obj, media: this.media };
+            case 'keyboard':
+                if (this.keyboard === undefined) {
+                    throw new Error('This should never happen');
+                }
+                delete obj['type'];
+                return { ...obj, keyboard: this.keyboard.serialize() };
         }
 
         throw new Error('This should never happen');

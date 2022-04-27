@@ -34,7 +34,8 @@ export type MessageType =
     | 'sticker'
     | 'RichMedia content'
     | 'rich_media'
-    | 'url';
+    | 'url'
+    | 'keyboard';
 export type OpenURLMediaType = 'not-media' | 'video' | 'gif' | 'picture';
 
 /** MESSAGE */
@@ -54,7 +55,9 @@ export interface IGeneralMessageOptions {
 export interface ITextOptions extends IGeneralMessageOptions {
     text: string;
 }
-
+export interface IKeyboardMessageOptions extends IGeneralMessageOptions {
+    keyboard: Keyboard;
+}
 export interface IRichMediaMessageOptions extends IGeneralMessageOptions {
     rich_media: RichMedia | Carousel;
 }
@@ -63,7 +66,11 @@ export interface IURLOptions extends IGeneralMessageOptions {
     media: string;
 }
 
-export type IMessageOptions = ITextOptions | IURLOptions | IRichMediaMessageOptions;
+export type IMessageOptions =
+    | ITextOptions
+    | IURLOptions
+    | IRichMediaMessageOptions
+    | IKeyboardMessageOptions;
 
 /** ATTACHMENTS */
 
@@ -154,7 +161,7 @@ export interface IMediaPlayer {
  * Serialized Structers
  **/
 export interface ISerializedGeneralMessage {
-    type: MessageType;
+    type?: MessageType;
     sender: ISender;
     min_api_version: string;
     tracking_data?: string;
@@ -164,6 +171,9 @@ export interface ISerializedGeneralMessage {
 
 export interface ISerializedText extends ISerializedGeneralMessage {
     text: string;
+}
+export interface ISerializedKeyboardMessage extends ISerializedGeneralMessage {
+    keyboard: ISerializedKeyboard;
 }
 export interface ISerializedURL extends ISerializedGeneralMessage {
     media: string;
@@ -175,7 +185,11 @@ export interface ISerializedImage extends ISerializedGeneralMessage {
     attachment: Picture;
 }
 
-export type ISerializedMessage = ISerializedText | ISerializedURL | ISerializedRichMediaMessage;
+export type ISerializedMessage =
+    | ISerializedText
+    | ISerializedURL
+    | ISerializedRichMediaMessage
+    | ISerializedKeyboardMessage;
 
 export interface ISerializedKeyboard {
     Buttons: ISerializedButton[];

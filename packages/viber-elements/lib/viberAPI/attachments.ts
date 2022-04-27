@@ -27,22 +27,22 @@ export class Button implements ISerializable {
     public ActionBody: string;
     public Image?: string;
     public Text?: string;
-    public TextSize: TextSize = 'regular';
-    public TextVAlign: TextVAlign = 'middle';
-    public TextHAlign: TextHAlign = 'center';
-    public Silent = false;
+    public TextSize?: TextSize;
+    public TextVAlign?: TextVAlign;
+    public TextHAlign?: TextHAlign;
+    public Silent?: boolean;
     public BgColor?: string;
     public BgMediaType?: MediaType;
     public BgMedia?: string;
     public BgMediaScaleType?: ScaleType;
     public ImageScaleType?: ScaleType;
-    public BgLoop = true;
+    public BgLoop?: boolean;
     public TextPaddings?: number[];
-    public TextOpacity = 100;
-    public OpenURLType: OpenURLType = 'internal';
-    public OpenURLMediaType: OpenURLMediaType = 'not-media';
+    public TextOpacity?: number;
+    public OpenURLType?: OpenURLType;
+    public OpenURLMediaType?: OpenURLMediaType;
     public TextBgGradientColor?: string;
-    public TextShouldFit = false;
+    public TextShouldFit = true;
     public InternalBrowser?: IInternalBrowser;
     public Map?: ICoordinates;
     public Frame?: IFrame;
@@ -108,13 +108,17 @@ export class Button implements ISerializable {
             TextSize: this.TextSize,
             Silent: this.Silent,
             Columns: this.Columns,
-            BgLoop: this.BgLoop,
             TextOpacity: this.TextOpacity,
             OpenURLType: this.OpenURLType,
             OpenURLMediaType: this.OpenURLMediaType,
             TextShouldFit: this.TextShouldFit,
             Rows: this.Rows
         };
+        Object.keys(obj).forEach((key: string) => {
+            if (obj[key as keyof typeof obj] === undefined) {
+                delete obj[key as keyof typeof obj];
+            }
+        });
 
         if (this.Image !== undefined) {
             obj.Image = this.Image;
