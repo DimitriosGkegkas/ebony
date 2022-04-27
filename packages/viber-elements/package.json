@@ -1,6 +1,6 @@
 {
     "name": "@ebenos2/viber-elements",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "description": "Elements Library for the Ebony framework.",
     "main": "./build/index.js",
     "publishConfig": {
