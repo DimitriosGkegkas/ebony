@@ -113,9 +113,15 @@ function handleTextMessage(
         console.log('No text handler');
         return;
     }
-    const text = m.text;
     const location = m.type === 'location' ? m.location : undefined;
     const contact = m.type === 'contact' ? m.contact : undefined;
+    const text = m.text
+        ? m.text
+        : location
+        ? 'USER_SEND_LOCATION'
+        : contact
+        ? 'USER_SEND_CONTACT'
+        : m.type;
 
     let tracking_data: ITrackingData;
     try {
