@@ -3,12 +3,20 @@ import {
     IViberSetWebhook,
     IViberSetWebhookResult
 } from '../interfaces/api';
+import { EventType } from '../interfaces/webhook';
 import viberRequest from './viberRequest';
 
-export function setWebhook(webhookUrl: string, authToken: string): Promise<IViberSetWebhookResult> {
+export function setWebhook(
+    webhookUrl: string,
+    authToken: string,
+    events?: EventType[]
+): Promise<IViberSetWebhookResult> {
     const body: IViberSetWebhook = {
         url: webhookUrl
     };
+    if (events) {
+        body['event_types'] = events;
+    }
     return viberRequest('set_webhook', body, authToken) as Promise<IViberSetWebhookResult>;
 }
 

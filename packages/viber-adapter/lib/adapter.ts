@@ -15,7 +15,8 @@ import {
     WebhookIncomingViberEvent,
     IViberUnsubscribedEvent,
     IViberSubscribedEvent,
-    IViberConversationStartedEvent
+    IViberConversationStartedEvent,
+    EventType
 } from './interfaces/webhook';
 import { setWebhook } from './api/requests';
 import { IViberSetWebhookResult } from './interfaces/api';
@@ -84,8 +85,8 @@ export default class ViberAdapter<U extends IUser> extends GenericAdapter {
         );
     }
 
-    public setWebhook(url: string): Promise<IViberSetWebhookResult> {
-        return setWebhook(url + this.route, this.authToken);
+    public setWebhook(url: string, events?: EventType[]): Promise<IViberSetWebhookResult> {
+        return setWebhook(url + this.route, this.authToken, events);
     }
 }
 
@@ -194,7 +195,6 @@ async function viberWebhookFactory<U extends IUser>(
                 if (webhooks?.conversationStartedWebhook) {
                     const welcomeMessage = await webhooks.conversationStartedWebhook(body);
                     if (welcomeMessage !== undefined) {
-                        console.log(welcomeMessage);
                         res.json(welcomeMessage);
                     }
                 }
