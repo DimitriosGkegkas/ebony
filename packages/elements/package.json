@@ -1,6 +1,6 @@
 {
     "name": "@ebenos2/elements",
-    "version": "4.0.0-alpha.29",
+    "version": "4.0.1",
     "description": "Elements Library for the Ebony framework.",
     "main": "./build/index.js",
     "publishConfig": {
