@@ -21,10 +21,14 @@ export default function messagingWebhook<T extends MessengerUser>(
                     // TODO: Postbacks and text handler
                     const qr = e.message.quick_reply;
                     if (qr.payload) {
-                        routerExists(routers.PostbackRouter).stringPayloadHandler(qr.payload, user);
-                        return;
+                        try {
+                            routerExists(routers.PostbackRouter).stringPayloadHandler(
+                                qr.payload,
+                                user
+                            );
+                            return;
+                        } catch (err) {}
                     }
-                    throw new Error('Not implemented');
                 }
                 if (handlers.text) {
                     handlers.text(e.message, e.message.nlp, user);
