@@ -14,7 +14,8 @@ export default function messagingWebhook<T extends MessengerUser>(
     const { userLoader, routers, handlers } = options;
 
     return async (e: MessagingEntry) => {
-        const user = await userLoader(e.sender.id);
+        const id = e.sender.id || e.sender.user_ref;
+        const user = await userLoader(id);
         if (e.message) {
             if (e.message.text) {
                 if (e.message.quick_reply) {
@@ -50,6 +51,10 @@ export default function messagingWebhook<T extends MessengerUser>(
             throw new Error('Not implemented');
         }
         if (e.postback) {
+            if (e.postback.payload) {
+                routerExists(routers.PostbackRouter).stringPayloadHandler(e.postback.payload, user);
+                return;
+            }
             if (e.postback.referral) {
                 const referral = e.postback.referral;
                 if (referral.ref) {
@@ -58,10 +63,6 @@ export default function messagingWebhook<T extends MessengerUser>(
                 }
 
                 throw new Error('Not implemented');
-            }
-            if (e.postback.payload) {
-                routerExists(routers.PostbackRouter).stringPayloadHandler(e.postback.payload, user);
-                return;
             }
 
             throw new Error('Not implemented');

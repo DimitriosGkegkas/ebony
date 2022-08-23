@@ -16,6 +16,7 @@ export interface FacebookWebhookEntry {
 
 export interface MessagingEntry {
     sender: {
+        user_ref: string;
         id: string;
     };
 
