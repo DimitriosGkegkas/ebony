@@ -20,7 +20,7 @@ export default class ReferralsRouter extends ReferralMatcher {
             return func(user, refId);
         }
 
-        const defaultFunc = this.ruleMatcher('default');
+        const defaultFunc = this.ruleMatcher(refId);
         if (defaultFunc) {
             return defaultFunc(user, refId);
         }
