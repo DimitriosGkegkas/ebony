@@ -13,17 +13,18 @@ import ReferralMatcher from './ReferralMatcher';
 export default class ReferralsRouter extends ReferralMatcher {
     public referralsRouter<U>(user: U, referral: Record<string, any>): any {
         const { ref, referer_uri } = referral;
+        const refId = ref || referer_uri || 'default';
 
-        const func = this.ruleMatcher(referer_uri || ref);
+        const func = this.ruleMatcher(refId);
         if (func) {
-            return func(user, referer_uri || ref);
+            return func(user, refId);
         }
 
         const defaultFunc = this.ruleMatcher('default');
         if (defaultFunc) {
-            return defaultFunc(user, referer_uri || ref);
+            return defaultFunc(user, refId);
         }
 
-        throw new Error('Unkown referral type ' + referer_uri || ref);
+        throw new Error('Unkown referral type ' + refId);
     }
 }

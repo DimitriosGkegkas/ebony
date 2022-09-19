@@ -29,7 +29,7 @@ import Actions from './utilities/actions';
 import TextMatcher from './routers/TextMatcher';
 
 import createScenario from './utilities/scenario';
-import BasicRouter from './routers/BasicRouter';
+
 /**
  * The Bot Class
  */
@@ -102,7 +102,7 @@ export default class Bot<U extends User<any>> {
 
         const postbackRoutes = this.compilePostbackRules(routes);
         const textRules = this.compileTextRules(text);
-        const referralsRouter = this.compileRefferalRules(referrals);
+        const referralsRouter = this.compileReferralRules(referrals);
 
         this.postbackRouter.importRoutes(postbackRoutes);
         this.textMatcher.importRules(textRules);
@@ -157,12 +157,11 @@ export default class Bot<U extends User<any>> {
 
         return textRules;
     }
-    private compileRefferalRules(referrals: Module<U>['referrals']) {
+    private compileReferralRules(referrals: Module<U>['referrals']) {
         const bot = this;
         if (referrals === undefined) {
             return [];
         }
-        console.log(222);
         const referralsRouter = [];
         for (const r of referrals) {
             referralsRouter.push({
