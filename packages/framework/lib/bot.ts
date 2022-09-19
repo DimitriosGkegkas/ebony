@@ -29,6 +29,7 @@ import Actions from './utilities/actions';
 import TextMatcher from './routers/TextMatcher';
 
 import createScenario from './utilities/scenario';
+import BasicRouter from './routers/BasicRouter';
 /**
  * The Bot Class
  */
@@ -88,7 +89,7 @@ export default class Bot<U extends User<any>> {
             routes = { stringPayloads: {}, objectPayloads: {} },
             actions = {},
             intents = {},
-            referrals = {},
+            referrals = [],
             text = [],
             nlp = () => Promise.resolve(),
             preMiddlewares = [],
@@ -101,11 +102,12 @@ export default class Bot<U extends User<any>> {
 
         const postbackRoutes = this.compilePostbackRules(routes);
         const textRules = this.compileTextRules(text);
+        const referralsRouter = this.compileRefferalRules(referrals);
 
         this.postbackRouter.importRoutes(postbackRoutes);
         this.textMatcher.importRules(textRules);
         this.intentRouter.importRoutes(intents);
-        this.referralsRouter.importRoutes(referrals); // TODO: Maybe we should deprecate that?
+        this.referralsRouter.importRules(referralsRouter); // TODO: Maybe we should deprecate that?
 
         this.complexNlp = nlp;
     }
@@ -154,6 +156,23 @@ export default class Bot<U extends User<any>> {
         }
 
         return textRules;
+    }
+    private compileRefferalRules(referrals: Module<U>['referrals']) {
+        const bot = this;
+        if (referrals === undefined) {
+            return [];
+        }
+        console.log(222);
+        const referralsRouter = [];
+        for (const r of referrals) {
+            referralsRouter.push({
+                regex: r.regex,
+                action: (user: U, payload?: IPayload, ...args: any[]) =>
+                    bot.actions.exec(r.action, user, payload, args)
+            });
+        }
+
+        return referralsRouter;
     }
 }
 

@@ -8,24 +8,24 @@
  *
  */
 
-import BasicRouter from './BasicRouter';
-export default class ReferralsRouter extends BasicRouter {
+import ReferralMatcher from './ReferralMatcher';
+
+export default class ReferralsRouter extends ReferralMatcher {
     public referralsRouter<U>(user: U, referral: Record<string, any>): any {
-        let { ref } = referral;
-        if (!ref) {
-            ref = referral;
-        }
+        let { ref, referer_uri } = referral;
 
-        const func = this.getRoute(ref);
+        const func = this.ruleMatcher(referer_uri);
         if (func) {
-            return func(user, ref);
+            return func(user, referer_uri);
         }
 
-        const defaultFunc = this.getRoute('default');
+        const defaultFunc = this.ruleMatcher('default');
         if (defaultFunc) {
-            return defaultFunc(user, ref);
+            return defaultFunc(user, referer_uri);
         }
 
-        throw new Error('Unkown referral type ' + ref);
+        throw new Error('Unkown referral type ' + referer_uri);
     }
 }
+
+
