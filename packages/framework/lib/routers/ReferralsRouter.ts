@@ -12,20 +12,18 @@ import ReferralMatcher from './ReferralMatcher';
 
 export default class ReferralsRouter extends ReferralMatcher {
     public referralsRouter<U>(user: U, referral: Record<string, any>): any {
-        let { ref, referer_uri } = referral;
+        const { ref, referer_uri } = referral;
 
-        const func = this.ruleMatcher(referer_uri);
+        const func = this.ruleMatcher(referer_uri || ref);
         if (func) {
-            return func(user, referer_uri);
+            return func(user, referer_uri || ref);
         }
 
         const defaultFunc = this.ruleMatcher('default');
         if (defaultFunc) {
-            return defaultFunc(user, referer_uri);
+            return defaultFunc(user, referer_uri || ref);
         }
 
-        throw new Error('Unkown referral type ' + referer_uri);
+        throw new Error('Unkown referral type ' + referer_uri || ref);
     }
 }
-
-
