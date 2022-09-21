@@ -29,7 +29,7 @@ export interface Module<T extends User<any>> {
     routes?: { stringPayloads: Record<string, string>; objectPayloads: Record<string, string> };
     actions?: { [key: string]: (user: T, ...params: any) => Promise<any> };
     intents?: { [key: string]: (user: T, ...params: any) => Promise<any> };
-    referrals?: { [key: string]: (user: T, ...params: any) => Promise<any> };
+    referrals?: Array<{ regex: RegExp; action: string }>;
     text?: Array<{ regex: RegExp; action: string }>;
     preMiddlewares?: Array<ActionMiddleware<T>>;
     postMiddlewares?: Array<ActionMiddleware<T>>;

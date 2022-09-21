@@ -10,7 +10,7 @@ export function createModule<U extends User<any>>(name = 'global'): Module<U> {
             stringPayloads: {},
             objectPayloads: {}
         },
-        referrals: {},
+        referrals: [],
         text: [],
         preMiddlewares: [],
         postMiddlewares: [],
@@ -88,6 +88,21 @@ export function addTextRule<U extends User<any>>(
     } else {
         module.text.push({ regex: rule, action: actionName });
     }
+}
+
+export function addReferralsRule<U extends User<any>>(
+    module: Module<U>,
+    action: (user: U, payload: IPayload, ...args: any[]) => Promise<any>,
+    rule: RegExp
+): void {
+    const actionName = module.name + '/' + action.name;
+    if (module.actions === undefined || !(actionName in module.actions)) {
+        throw new Error(`Action does not exist!`);
+    }
+    if (module.referrals === undefined) {
+        module.referrals = [];
+    }
+    module.referrals.push({ regex: rule, action: actionName });
 }
 
 export function createPayload<U extends User<any>>(
