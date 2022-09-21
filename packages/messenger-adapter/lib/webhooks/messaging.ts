@@ -64,7 +64,7 @@ export default function messagingWebhook<T extends MessengerUser>(
         }
         if (e.referral) {
             const referral = e.referral;
-            if (referral.ref) {
+            if (referral.ref || referral.referer_uri) {
                 routerExists(routers.ReferralsRouter).referralsRouter(user, referral);
                 return;
             }
